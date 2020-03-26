@@ -1,6 +1,6 @@
 package BasicClasses;
 
-import Utilities.IDGenerator;
+import Utils.IDGenerator;
 
 import java.time.ZonedDateTime;
 

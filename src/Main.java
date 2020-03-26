@@ -1,34 +1,16 @@
-import java.io.*;
-import java.net.Socket;
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.nio.channels.SocketChannel;
 
 public class Main {
-    private static Socket clientSocket;
-    private static BufferedReader reader;
-    private static BufferedReader in;
-    private static BufferedWriter out;
-
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         try {
-            try {
-                clientSocket = new Socket("localhost", 4321);
-                reader = new BufferedReader(new InputStreamReader(System.in));
-                in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-                out = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
+            SocketChannel socketChannel = SocketChannel.open();
+            socketChannel.configureBlocking(false);
+            socketChannel.connect(new InetSocketAddress("localhost", 4321));
 
-                String word = reader.readLine();
-                out.write(word + "\n");
-                out.flush();
-
-                String serverWord = in.readLine();
-                System.out.println(serverWord);
-            } finally {
-                clientSocket.close();
-                in.close();
-                out.close();
-                System.out.println("Клиент закрыт.");
-            }
         } catch (IOException e) {
-            System.err.println(e);
+            e.printStackTrace();
         }
 
     }

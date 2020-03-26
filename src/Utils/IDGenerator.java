@@ -1,4 +1,4 @@
-package Utilities;
+package Utils;
 
 import java.util.HashSet;
 import java.util.Random;
