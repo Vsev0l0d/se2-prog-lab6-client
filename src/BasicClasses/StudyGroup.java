@@ -1,9 +1,8 @@
 package BasicClasses;
 
-import Collection.IDGenerator;
+import Utilities.IDGenerator;
 
 import java.time.ZonedDateTime;
-import java.util.Random;
 
 public class StudyGroup implements Comparable<StudyGroup> {
     private Integer id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
