@@ -54,11 +54,9 @@ public class Client implements Runnable {
         try {
             connect();
             while (!socketChannel.finishConnect()) {}
-            while (socketChannel.isConnected()) {
-                sendData("Эрик");
-                Thread.sleep(20);
-                System.out.println(readData() + "!");
-            }
+            sendData("Эрик");
+            Thread.sleep(20);
+            System.out.println(readData());
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
