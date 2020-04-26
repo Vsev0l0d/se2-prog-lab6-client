@@ -2,9 +2,10 @@ package BasicClasses;
 
 import Utils.IDGenerator;
 
+import java.io.Serializable;
 import java.time.ZonedDateTime;
 
-public class StudyGroup implements Comparable<StudyGroup> {
+public class StudyGroup implements Comparable<StudyGroup>, Serializable {
     private Integer id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Coordinates coordinates; //Поле не может быть null
