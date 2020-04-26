@@ -1,6 +1,8 @@
+import java.io.*;
+
 public class Main {
-    public static void main(String[] args){
-        Client client = new Client();
-        client.run();
+    public static void main(String[] args) throws IOException {
+        ConsoleManager consoleManager = new ConsoleManager();
+        consoleManager.startInteractiveMode();
     }
 }
