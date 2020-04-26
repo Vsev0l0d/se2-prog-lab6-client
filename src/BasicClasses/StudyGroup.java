@@ -1,6 +1,6 @@
 package BasicClasses;
 
-import Collection.IDGenerator;
+import Utils.IDGenerator;
 
 import java.io.Serializable;
 import java.time.ZonedDateTime;
