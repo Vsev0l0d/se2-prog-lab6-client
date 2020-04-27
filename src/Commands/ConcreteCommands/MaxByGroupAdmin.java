@@ -15,7 +15,7 @@ public class MaxByGroupAdmin extends Command {
         this.commandReceiver = commandReceiver;
     }
 
-    public MaxByGroupAdmin(){}
+    public MaxByGroupAdmin() {}
 
     @Override
     protected void execute(String[] args) throws IOException {

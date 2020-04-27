@@ -15,7 +15,7 @@ public class Update extends Command {
         this.commandReceiver = commandReceiver;
     }
 
-    public Update(){}
+    public Update() {}
 
     @Override
     protected void execute(String[] args) throws IOException {

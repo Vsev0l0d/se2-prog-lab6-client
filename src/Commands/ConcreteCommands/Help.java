@@ -15,7 +15,7 @@ public class Help extends Command {
         this.commandReceiver = commandReceiver;
     }
 
-    public Help(){}
+    public Help() {}
 
     @Override
     protected void execute(String[] args) throws IOException {

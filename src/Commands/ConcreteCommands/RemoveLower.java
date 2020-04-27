@@ -15,7 +15,7 @@ public class RemoveLower extends Command {
         this.commandReceiver = commandReceiver;
     }
 
-    public RemoveLower(){}
+    public RemoveLower() {}
 
     @Override
     protected void execute(String[] args) throws IOException {

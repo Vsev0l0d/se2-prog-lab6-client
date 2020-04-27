@@ -15,7 +15,7 @@ public class Head extends Command {
         this.commandReceiver = commandReceiver;
     }
 
-    public Head(){}
+    public Head() {}
 
     @Override
     protected void execute(String[] args) throws IOException {

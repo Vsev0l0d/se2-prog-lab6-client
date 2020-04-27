@@ -15,7 +15,7 @@ public class Show extends Command {
         this.commandReceiver = commandReceiver;
     }
 
-    public Show(){}
+    public Show() {}
 
     @Override
     protected void execute(String[] args) throws IOException {

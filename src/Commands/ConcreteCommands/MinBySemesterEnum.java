@@ -15,7 +15,7 @@ public class MinBySemesterEnum extends Command {
         this.commandReceiver = commandReceiver;
     }
 
-    public MinBySemesterEnum(){}
+    public MinBySemesterEnum() {}
 
     @Override
     protected void execute(String[] args) throws IOException {

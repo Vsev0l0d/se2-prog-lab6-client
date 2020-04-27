@@ -15,7 +15,7 @@ public class CountByGroupAdmin extends Command {
         this.commandReceiver = commandReceiver;
     }
 
-    public CountByGroupAdmin(){}
+    public CountByGroupAdmin() {}
 
     @Override
     protected void execute(String[] args) throws IOException {

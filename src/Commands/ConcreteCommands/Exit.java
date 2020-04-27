@@ -15,7 +15,7 @@ public class Exit extends Command {
         this.commandReceiver = commandReceiver;
     }
 
-    public Exit(){}
+    public Exit() {}
 
     @Override
     protected void execute(String[] args) throws IOException {

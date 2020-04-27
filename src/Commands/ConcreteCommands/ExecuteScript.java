@@ -16,7 +16,7 @@ public class ExecuteScript extends Command {
         this.commandReceiver = commandReceiver;
     }
 
-    public ExecuteScript(){}
+    public ExecuteScript() {}
 
     @Override
     protected void execute(String[] args) throws StackOverflowError, IOException {

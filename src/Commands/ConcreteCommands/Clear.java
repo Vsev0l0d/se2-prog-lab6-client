@@ -15,7 +15,7 @@ public class Clear extends Command {
         this.commandReceiver = commandReceiver;
     }
 
-    public Clear(){}
+    public Clear() {}
 
     @Override
     protected void execute(String[] args) throws IOException {
