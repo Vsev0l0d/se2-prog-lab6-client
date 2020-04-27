@@ -1,6 +1,7 @@
 package Client;
 
 import Commands.SerializedCommands.SerializedArgumentCommand;
+import Commands.SerializedCommands.SerializedCombinedCommand;
 import Commands.SerializedCommands.SerializedObjectCommand;
 import Commands.SerializedCommands.SerializedSimplyCommand;
 
@@ -45,4 +46,13 @@ public class Sender {
         byte [] data = bos.toByteArray();
         socketChannel.write(ByteBuffer.wrap(data));
     }   // Отправка SerializedSimplyCommand.
+
+    public void sendObject(SerializedCombinedCommand serializedCombinedCommand) throws IOException {
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        ObjectOutputStream oos = new ObjectOutputStream(bos);
+
+        oos.writeObject(serializedCombinedCommand);
+        byte [] data = bos.toByteArray();
+        socketChannel.write(ByteBuffer.wrap(data));
+    }   // Отправка SerializedCombinedCommand.
 }

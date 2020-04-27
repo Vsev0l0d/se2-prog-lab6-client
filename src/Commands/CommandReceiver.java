@@ -4,6 +4,7 @@ import BasicClasses.StudyGroup;
 import Client.Sender;
 import Commands.ConcreteCommands.*;
 import Commands.SerializedCommands.SerializedArgumentCommand;
+import Commands.SerializedCommands.SerializedCombinedCommand;
 import Commands.SerializedCommands.SerializedObjectCommand;
 import Commands.SerializedCommands.SerializedSimplyCommand;
 import Commands.Utils.Creaters.ElementCreator;
@@ -45,15 +46,7 @@ public class CommandReceiver {
      * @param ID - апдейт элемента по ID.
      */
     public void update(String ID) throws IOException {
-        sender.sendObject(new SerializedArgumentCommand(new Update(), ID));
-        /*Integer groupId;
-        try {
-            groupId = Integer.parseInt(ID);
-            if (CollectionUtils.checkExist(groupId)) { CollectionManager.update(ElementCreator.createStudyGroup(), groupId); }
-            else {System.out.println("Элемента с таким ID нет в коллекции.");}
-        } catch (NumberFormatException e) {
-            System.out.println("Команда не выполнена. Вы ввели некорректный аргумент.");
-        } */
+        sender.sendObject(new SerializedCombinedCommand(new Update(), ElementCreator.createStudyGroup(), ID));
     }
 
     /**
@@ -66,7 +59,6 @@ public class CommandReceiver {
 
     public void clear() throws IOException {
         sender.sendObject(new SerializedSimplyCommand(new Clear()));
-        System.out.println("Коллекция успешно очищена.");
     }
 
     public void exit() {
