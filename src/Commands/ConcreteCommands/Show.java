@@ -3,18 +3,22 @@ package Commands.ConcreteCommands;
 import Commands.Command;
 import Commands.CommandReceiver;
 
+import java.io.IOException;
+
 /**
  * Конкретная команда показа содержания коллекции.
  */
 public class Show extends Command {
-    private final CommandReceiver commandReceiver;
+    private CommandReceiver commandReceiver;
 
     public Show (CommandReceiver commandReceiver) {
         this.commandReceiver = commandReceiver;
     }
 
+    public Show(){}
+
     @Override
-    protected void execute(String[] args) {
+    protected void execute(String[] args) throws IOException {
         if (args.length > 1) {
             System.out.println("Введен не нужный аргумент. Команда приведена к базовой команде show.");
         }

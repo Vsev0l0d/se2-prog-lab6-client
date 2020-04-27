@@ -3,18 +3,22 @@ package Commands.ConcreteCommands;
 import Commands.Command;
 import Commands.CommandReceiver;
 
+import java.io.IOException;
+
 /**
  * Конкретная команда подсчета по админу.
  */
 public class CountByGroupAdmin extends Command {
-    private final CommandReceiver commandReceiver;
+    private CommandReceiver commandReceiver;
 
     public CountByGroupAdmin(CommandReceiver commandReceiver) {
         this.commandReceiver = commandReceiver;
     }
 
+    public CountByGroupAdmin(){}
+
     @Override
-    protected void execute(String[] args) {
+    protected void execute(String[] args) throws IOException {
         if (args.length > 1) {
             System.out.println("Введен не нужный аргумент. Команда приведена к базовой команде count_by_group_admin.");
         }

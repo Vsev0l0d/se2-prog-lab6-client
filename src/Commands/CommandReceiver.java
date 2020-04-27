@@ -2,10 +2,7 @@ package Commands;
 
 import BasicClasses.StudyGroup;
 import Client.Sender;
-import Commands.ConcreteCommands.Add;
-import Commands.ConcreteCommands.ExecuteScript;
-import Commands.ConcreteCommands.Info;
-import Commands.ConcreteCommands.RemoveByID;
+import Commands.ConcreteCommands.*;
 import Commands.SerializedCommands.SerializedArgumentCommand;
 import Commands.SerializedCommands.SerializedObjectCommand;
 import Commands.SerializedCommands.SerializedSimplyCommand;
@@ -35,8 +32,8 @@ public class CommandReceiver {
         sender.sendObject(new SerializedSimplyCommand(new Info()));
     }
 
-    public void show() {
-        //CollectionManager.show();
+    public void show() throws IOException {
+        sender.sendObject(new SerializedSimplyCommand(new Show()));
     }
 
     public void add() throws IOException {
@@ -47,7 +44,8 @@ public class CommandReceiver {
      *
      * @param ID - апдейт элемента по ID.
      */
-    public void update(String ID) {
+    public void update(String ID) throws IOException {
+        sender.sendObject(new SerializedArgumentCommand(new Update(), ID));
         /*Integer groupId;
         try {
             groupId = Integer.parseInt(ID);
@@ -66,9 +64,9 @@ public class CommandReceiver {
         sender.sendObject(new SerializedArgumentCommand(new RemoveByID(), ID));
     }
 
-    public void clear() {
-        /*CollectionManager.clear();
-        System.out.println("Коллекция успешно очищена.");*/
+    public void clear() throws IOException {
+        sender.sendObject(new SerializedSimplyCommand(new Clear()));
+        System.out.println("Коллекция успешно очищена.");
     }
 
     public void exit() {
@@ -76,28 +74,28 @@ public class CommandReceiver {
         System.exit(0);
     }
 
-    public void head() {
-       // CollectionManager.head();
+    public void head() throws IOException {
+       sender.sendObject(new SerializedSimplyCommand(new Head()));
     }
 
-    public void remove_greater() {
-        //CollectionManager.remove_greater(ElementCreator.createStudyGroup());
+    public void remove_greater() throws IOException {
+        sender.sendObject(new SerializedObjectCommand(new RemoveGreater(), ElementCreator.createStudyGroup()));
     }
 
-    public void remove_lower() {
-        //CollectionManager.remove_lower(ElementCreator.createStudyGroup());
+    public void remove_lower() throws IOException {
+        sender.sendObject(new SerializedObjectCommand(new RemoveLower(), ElementCreator.createStudyGroup()));
     }
 
-    public void min_by_semester_enum() {
-        //CollectionManager.min_by_semester_enum();
+    public void min_by_semester_enum() throws IOException {
+        sender.sendObject(new SerializedSimplyCommand(new MinBySemesterEnum()));
     }
 
-    public void maxByGroupAdmin() {
-        //CollectionManager.maxByGroupAdmin();
+    public void maxByGroupAdmin() throws IOException {
+        sender.sendObject(new SerializedSimplyCommand(new MaxByGroupAdmin()));
     }
 
-    public void countByGroupAdmin() {
-        //CollectionManager.countByGroupAdmin(ElementCreator.createPerson());
+    public void countByGroupAdmin() throws IOException {
+        sender.sendObject(new SerializedObjectCommand(new CountByGroupAdmin(), ElementCreator.createStudyGroup()));
     }
 
     public void executeScript(String path) {

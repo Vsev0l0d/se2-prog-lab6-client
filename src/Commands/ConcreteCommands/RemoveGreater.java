@@ -3,18 +3,22 @@ package Commands.ConcreteCommands;
 import Commands.Command;
 import Commands.CommandReceiver;
 
+import java.io.IOException;
+
 /**
  * Конкретная команда удаления объектов, превышающих заданный.
  */
 public class RemoveGreater extends Command {
-    private final CommandReceiver commandReceiver;
+    private CommandReceiver commandReceiver;
 
     public RemoveGreater (CommandReceiver commandReceiver) {
         this.commandReceiver = commandReceiver;
     }
 
+    public RemoveGreater(){}
+
     @Override
-    protected void execute(String[] args) {
+    protected void execute(String[] args) throws IOException {
         if (args.length > 1) {
             System.out.println("Введен не нужный аргумент. Команда приведена к базовой команде remove_greater.");
         }

@@ -3,18 +3,22 @@ package Commands.ConcreteCommands;
 import Commands.Command;
 import Commands.CommandReceiver;
 
+import java.io.IOException;
+
 /**
  * Конкретная команда обновления объекта.
  */
 public class Update extends Command {
-    private final CommandReceiver commandReceiver;
+    private CommandReceiver commandReceiver;
 
     public Update (CommandReceiver commandReceiver) {
         this.commandReceiver = commandReceiver;
     }
 
+    public Update(){}
+
     @Override
-    protected void execute(String[] args) {
+    protected void execute(String[] args) throws IOException {
         if (args.length == 2) { commandReceiver.update(args[1]); }
         else { System.out.println("Некорректное количество аргументов. Для справки напишите help."); }
     }

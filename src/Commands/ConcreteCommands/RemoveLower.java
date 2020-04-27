@@ -3,18 +3,22 @@ package Commands.ConcreteCommands;
 import Commands.Command;
 import Commands.CommandReceiver;
 
+import java.io.IOException;
+
 /**
  * Конкретная команда удаления объектов, меньше заданного.
  */
 public class RemoveLower extends Command {
-    private final CommandReceiver commandReceiver;
+    private CommandReceiver commandReceiver;
 
     public RemoveLower(CommandReceiver commandReceiver) {
         this.commandReceiver = commandReceiver;
     }
 
+    public RemoveLower(){}
+
     @Override
-    protected void execute(String[] args) {
+    protected void execute(String[] args) throws IOException {
         if (args.length > 1) {
             System.out.println("Введен не нужный аргумент. Команда приведена к базовой команде remove_lower.");
         }

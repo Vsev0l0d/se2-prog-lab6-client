@@ -3,19 +3,23 @@ package Commands.ConcreteCommands;
 import Commands.Command;
 import Commands.CommandReceiver;
 
+import java.io.IOException;
+
 /**
  * Конкретная команда выполнения скрипта.
  */
 public class ExecuteScript extends Command {
-    private final CommandReceiver commandReceiver;
+    private CommandReceiver commandReceiver;
     private static String path;
 
     public ExecuteScript(CommandReceiver commandReceiver) {
         this.commandReceiver = commandReceiver;
     }
 
+    public ExecuteScript(){}
+
     @Override
-    protected void execute(String[] args) throws StackOverflowError {
+    protected void execute(String[] args) throws StackOverflowError, IOException {
         try {
             if (args.length == 2) { path = args[1]; commandReceiver.executeScript(args[1]); }
             else { System.out.println("Некорректное количество аргументов. Для справки напишите help."); }
