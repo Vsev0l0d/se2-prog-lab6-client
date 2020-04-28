@@ -2,7 +2,6 @@ package Client;
 
 import Commands.SerializedCommands.SerializedArgumentCommand;
 import Commands.SerializedCommands.SerializedCombinedCommand;
-import Commands.SerializedCommands.SerializedObjectCommand;
 import Commands.SerializedCommands.SerializedSimplyCommand;
 
 import java.io.ByteArrayOutputStream;
@@ -20,11 +19,11 @@ public class Sender {
         this.socketChannel = session.getSocketChannel();
     }
 
-    public void sendObject(SerializedObjectCommand serializedObjectCommand) throws IOException {
+    public void sendObject(Object... serializedObject) throws IOException {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         ObjectOutputStream oos = new ObjectOutputStream(bos);
 
-        oos.writeObject(serializedObjectCommand);
+        oos.writeObject(serializedObject);
         byte [] data = bos.toByteArray();
         socketChannel.write(ByteBuffer.wrap(data));
     }   // Отправка SerializedObjectCommand.

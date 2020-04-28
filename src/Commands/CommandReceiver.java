@@ -1,6 +1,7 @@
 package Commands;
 
 import BasicClasses.StudyGroup;
+import Client.Receiver;
 import Client.Sender;
 import Commands.ConcreteCommands.*;
 import Commands.SerializedCommands.SerializedArgumentCommand;
@@ -10,6 +11,7 @@ import Commands.SerializedCommands.SerializedSimplyCommand;
 import Commands.Utils.Creaters.ElementCreator;
 
 import java.io.*;
+import java.nio.channels.SocketChannel;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
@@ -19,18 +21,21 @@ import java.util.ArrayList;
 public class CommandReceiver {
     private final CommandInvoker commandInvoker;
     private final Sender sender;
+    private final SocketChannel socketChannel;
 
-    public CommandReceiver(CommandInvoker commandInvoker, Sender sender) {
+    public CommandReceiver(CommandInvoker commandInvoker, Sender sender, SocketChannel socketChannel) {
         this.commandInvoker = commandInvoker;
         this.sender = sender;
+        this.socketChannel = socketChannel;
     }
 
     public void help() {
         commandInvoker.getCommandMap().forEach((name, command) -> command.writeInfo());
     }
 
-    public void info() throws IOException {
+    public void info() throws IOException, ClassNotFoundException {
         sender.sendObject(new SerializedSimplyCommand(new Info()));
+        Receiver.receive(socketChannel);
     }
 
     public void show() throws IOException {

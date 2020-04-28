@@ -19,7 +19,7 @@ public class CommandInvoker {
                 Command command = commandMap.get(commandName[0]);
                 command.execute(commandName);
             } else { System.out.println("Вы не ввели команду."); }
-        } catch (IllegalStateException | NullPointerException | IOException ex) {
+        } catch (IllegalStateException | NullPointerException | IOException | ClassNotFoundException ex) {
             ex.printStackTrace();
             System.out.println("Не существует команды " + commandName[0] + ". Для справки используйте – help");
         }

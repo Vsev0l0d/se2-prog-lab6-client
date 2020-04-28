@@ -18,7 +18,7 @@ class ConsoleManager {
         Sender sender = new Sender(session);
 
         CommandInvoker commandInvoker = new CommandInvoker();
-        CommandReceiver commandReceiver = new CommandReceiver(commandInvoker, sender);
+        CommandReceiver commandReceiver = new CommandReceiver(commandInvoker, sender, session.getSocketChannel());
 
         commandInvoker.register("help", new Help(commandReceiver));
         commandInvoker.register("add", new Add(commandReceiver));
