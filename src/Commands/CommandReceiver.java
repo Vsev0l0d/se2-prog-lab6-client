@@ -33,8 +33,9 @@ public class CommandReceiver {
         commandInvoker.getCommandMap().forEach((name, command) -> command.writeInfo());
     }
 
-    public void info() throws IOException, ClassNotFoundException {
+    public void info() throws IOException, ClassNotFoundException, InterruptedException {
         sender.sendObject(new SerializedSimplyCommand(new Info()));
+        Thread.sleep(50);
         Receiver.receive(socketChannel);
     }
 

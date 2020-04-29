@@ -17,6 +17,7 @@ public class Session {
     public void startSession() throws IOException {
         InetSocketAddress inetSocketAddress = new InetSocketAddress(hostName, port);
         socketChannel = SocketChannel.open(inetSocketAddress);
+        socketChannel.configureBlocking(false);
 
         System.out.println(String.format("Подключение к удаленному адресу %s по порту %d", hostName, port));
     }

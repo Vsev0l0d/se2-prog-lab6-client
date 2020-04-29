@@ -20,7 +20,7 @@ public class Info extends Command implements Serializable {
     }
 
     @Override
-    protected void execute(String[] args) throws IOException, ClassNotFoundException {
+    protected void execute(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
         if (args.length > 1) {
             System.out.println("Введен не нужный аргумент. Команда приведена к базовой команде info.");
         }
