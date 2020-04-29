@@ -9,6 +9,7 @@ import java.io.IOException;
  * Конкретная команда обновления объекта.
  */
 public class Update extends Command {
+    private static final long serialVersionUID = 32L;
     private CommandReceiver commandReceiver;
 
     public Update (CommandReceiver commandReceiver) {

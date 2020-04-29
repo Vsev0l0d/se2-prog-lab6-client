@@ -11,8 +11,6 @@ public class Receiver {
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(data);
         ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
 
-        System.out.println(objectInputStream.readObject());
-
-        //Decrypting.decrypt(o);
+        Decrypting.decrypt(objectInputStream.readObject());
     }
 }
