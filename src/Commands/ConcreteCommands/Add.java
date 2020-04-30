@@ -9,7 +9,8 @@ import java.io.IOException;
  * Конкретная команда добавления в коллекцию.
  */
 public class Add extends Command {
-    private CommandReceiver commandReceiver;
+    private static final long serialVersionUID = 32L;
+    transient private CommandReceiver commandReceiver;
 
     public Add (CommandReceiver commandReceiver) {
         this.commandReceiver = commandReceiver;
@@ -18,7 +19,7 @@ public class Add extends Command {
     public Add() {}
 
     @Override
-    protected void execute(String[] args) throws IOException {
+    protected void execute(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
         if (args.length > 1) {
             System.out.println("Введен не нужный аргумент. Команда приведена к базовой команде add.");
         }

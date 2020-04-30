@@ -9,7 +9,8 @@ import java.io.IOException;
  * Конкретная команда удаления по ID.
  */
 public class RemoveByID extends Command {
-    private CommandReceiver commandReceiver;
+    private static final long serialVersionUID = 32L;
+    transient private CommandReceiver commandReceiver;
 
     public RemoveByID (CommandReceiver commandReceiver) {
         this.commandReceiver = commandReceiver;
@@ -18,7 +19,7 @@ public class RemoveByID extends Command {
     public RemoveByID() {}
 
     @Override
-    protected void execute(String[] args) throws IOException {
+    protected void execute(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
         if (args.length == 2) { commandReceiver.removeById(args[1]); }
         else { System.out.println("Некорректное количество аргументов. Для справки напишите help."); }
     }

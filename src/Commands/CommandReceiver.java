@@ -39,12 +39,16 @@ public class CommandReceiver {
         Receiver.receive(socketChannel);
     }
 
-    public void show() throws IOException {
+    public void show() throws IOException, ClassNotFoundException, InterruptedException {
         sender.sendObject(new SerializedSimplyCommand(new Show()));
+        Thread.sleep(50);
+        Receiver.receive(socketChannel);
     }
 
-    public void add() throws IOException {
+    public void add() throws IOException, InterruptedException, ClassNotFoundException {
         sender.sendObject(new SerializedObjectCommand(new Add(), ElementCreator.createStudyGroup()));
+        Thread.sleep(50);
+        Receiver.receive(socketChannel);
     }
 
     /**
@@ -59,8 +63,10 @@ public class CommandReceiver {
      *
      * @param ID - удаление по ID.
      */
-    public void removeById(String ID) throws IOException {
+    public void removeById(String ID) throws IOException, InterruptedException, ClassNotFoundException {
         sender.sendObject(new SerializedArgumentCommand(new RemoveByID(), ID));
+        Thread.sleep(50);
+        Receiver.receive(socketChannel);
     }
 
     public void clear() throws IOException {
