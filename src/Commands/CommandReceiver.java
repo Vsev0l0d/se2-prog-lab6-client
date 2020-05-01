@@ -113,7 +113,7 @@ public class CommandReceiver {
     }
 
     public void countByGroupAdmin() throws IOException, InterruptedException, ClassNotFoundException {
-        sender.sendObject(new SerializedObjectCommand(new CountByGroupAdmin(), ElementCreator.createStudyGroup()));
+        sender.sendObject(new SerializedObjectCommand(new CountByGroupAdmin(), ElementCreator.createPerson()));
         Thread.sleep(50);
         Receiver.receive(socketChannel);
     }
