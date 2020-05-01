@@ -12,11 +12,15 @@ import Commands.Utils.Readers.PrimitiveAndReferenceReaders.StringReader;
 
 import java.util.ArrayList;
 
+
 /**
  * Классб содержащий методы для создания группы и человека.
  */
 public class ElementCreator {
     public static StudyGroup createStudyGroup() {
+
+        if (StringReader.read("Если хотите дефолтный обьект введите любой символ, в противном случае сразу нажмите Enter: ", true).length() > 0) return new StudyGroup("qqqq", new Coordinates(1, 1), 1, null , Semester.FIFTH, new Person("sss", 2, Color.RED, Color.RED, Country.USA));
+
         String name = StringReader.read("Введите имя группы: ", false);
         Integer x = RefIntReader.read("Введите X: ", false, 531, "MAX");
         float y = PrimitiveFloatReader.read("Введите Y: ", -653f, "MIN");
