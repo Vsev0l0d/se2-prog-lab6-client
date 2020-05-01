@@ -73,7 +73,6 @@ public class CommandReceiver {
 
     public void clear() throws IOException, InterruptedException, ClassNotFoundException {
         sender.sendObject(new SerializedSimplyCommand(new Clear()));
-
         Thread.sleep(50);
         Receiver.receive(socketChannel);
     }
@@ -85,42 +84,36 @@ public class CommandReceiver {
 
     public void head() throws IOException, InterruptedException, ClassNotFoundException {
        sender.sendObject(new SerializedSimplyCommand(new Head()));
-
         Thread.sleep(50);
         Receiver.receive(socketChannel);
     }
 
     public void remove_greater() throws IOException, InterruptedException, ClassNotFoundException {
         sender.sendObject(new SerializedObjectCommand(new RemoveGreater(), ElementCreator.createStudyGroup()));
-
         Thread.sleep(50);
         Receiver.receive(socketChannel);
     }
 
     public void remove_lower() throws IOException, ClassNotFoundException, InterruptedException {
         sender.sendObject(new SerializedObjectCommand(new RemoveLower(), ElementCreator.createStudyGroup()));
-
         Thread.sleep(50);
         Receiver.receive(socketChannel);
     }
 
     public void min_by_semester_enum() throws IOException, InterruptedException, ClassNotFoundException {
         sender.sendObject(new SerializedSimplyCommand(new MinBySemesterEnum()));
-
         Thread.sleep(50);
         Receiver.receive(socketChannel);
     }
 
     public void maxByGroupAdmin() throws IOException, InterruptedException, ClassNotFoundException {
         sender.sendObject(new SerializedSimplyCommand(new MaxByGroupAdmin()));
-
         Thread.sleep(50);
         Receiver.receive(socketChannel);
     }
 
     public void countByGroupAdmin() throws IOException, InterruptedException, ClassNotFoundException {
         sender.sendObject(new SerializedObjectCommand(new CountByGroupAdmin(), ElementCreator.createStudyGroup()));
-
         Thread.sleep(50);
         Receiver.receive(socketChannel);
     }
