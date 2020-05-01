@@ -18,7 +18,7 @@ public class MinBySemesterEnum extends Command {
     public MinBySemesterEnum() {}
 
     @Override
-    protected void execute(String[] args) throws IOException {
+    protected void execute(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
         if (args.length > 1) {
             System.out.println("Введен не нужный аргумент. Команда приведена к базовой команде min_by_semester_enum.");
         }

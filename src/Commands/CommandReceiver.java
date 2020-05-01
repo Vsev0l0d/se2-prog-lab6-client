@@ -55,8 +55,10 @@ public class CommandReceiver {
      *
      * @param ID - апдейт элемента по ID.
      */
-    public void update(String ID) throws IOException {
+    public void update(String ID) throws IOException, InterruptedException, ClassNotFoundException {
         sender.sendObject(new SerializedCombinedCommand(new Update(), ElementCreator.createStudyGroup(), ID));
+        Thread.sleep(50);
+        Receiver.receive(socketChannel);
     }
 
     /**
@@ -69,8 +71,11 @@ public class CommandReceiver {
         Receiver.receive(socketChannel);
     }
 
-    public void clear() throws IOException {
+    public void clear() throws IOException, InterruptedException, ClassNotFoundException {
         sender.sendObject(new SerializedSimplyCommand(new Clear()));
+
+        Thread.sleep(50);
+        Receiver.receive(socketChannel);
     }
 
     public void exit() {
@@ -78,28 +83,46 @@ public class CommandReceiver {
         System.exit(0);
     }
 
-    public void head() throws IOException {
+    public void head() throws IOException, InterruptedException, ClassNotFoundException {
        sender.sendObject(new SerializedSimplyCommand(new Head()));
+
+        Thread.sleep(50);
+        Receiver.receive(socketChannel);
     }
 
-    public void remove_greater() throws IOException {
+    public void remove_greater() throws IOException, InterruptedException, ClassNotFoundException {
         sender.sendObject(new SerializedObjectCommand(new RemoveGreater(), ElementCreator.createStudyGroup()));
+
+        Thread.sleep(50);
+        Receiver.receive(socketChannel);
     }
 
-    public void remove_lower() throws IOException {
+    public void remove_lower() throws IOException, ClassNotFoundException, InterruptedException {
         sender.sendObject(new SerializedObjectCommand(new RemoveLower(), ElementCreator.createStudyGroup()));
+
+        Thread.sleep(50);
+        Receiver.receive(socketChannel);
     }
 
-    public void min_by_semester_enum() throws IOException {
+    public void min_by_semester_enum() throws IOException, InterruptedException, ClassNotFoundException {
         sender.sendObject(new SerializedSimplyCommand(new MinBySemesterEnum()));
+
+        Thread.sleep(50);
+        Receiver.receive(socketChannel);
     }
 
-    public void maxByGroupAdmin() throws IOException {
+    public void maxByGroupAdmin() throws IOException, InterruptedException, ClassNotFoundException {
         sender.sendObject(new SerializedSimplyCommand(new MaxByGroupAdmin()));
+
+        Thread.sleep(50);
+        Receiver.receive(socketChannel);
     }
 
-    public void countByGroupAdmin() throws IOException {
+    public void countByGroupAdmin() throws IOException, InterruptedException, ClassNotFoundException {
         sender.sendObject(new SerializedObjectCommand(new CountByGroupAdmin(), ElementCreator.createStudyGroup()));
+
+        Thread.sleep(50);
+        Receiver.receive(socketChannel);
     }
 
     public void executeScript(String path) {

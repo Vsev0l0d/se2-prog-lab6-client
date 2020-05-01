@@ -19,7 +19,7 @@ public class Update extends Command {
     public Update() {}
 
     @Override
-    protected void execute(String[] args) throws IOException {
+    protected void execute(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
         if (args.length == 2) { commandReceiver.update(args[1]); }
         else { System.out.println("Некорректное количество аргументов. Для справки напишите help."); }
     }

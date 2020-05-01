@@ -18,7 +18,7 @@ public class CountByGroupAdmin extends Command {
     public CountByGroupAdmin() {}
 
     @Override
-    protected void execute(String[] args) throws IOException {
+    protected void execute(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
         if (args.length > 1) {
             System.out.println("Введен не нужный аргумент. Команда приведена к базовой команде count_by_group_admin.");
         }

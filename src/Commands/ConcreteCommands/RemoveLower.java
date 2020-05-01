@@ -18,7 +18,7 @@ public class RemoveLower extends Command {
     public RemoveLower() {}
 
     @Override
-    protected void execute(String[] args) throws IOException {
+    protected void execute(String[] args) throws IOException, InterruptedException, ClassNotFoundException {
         if (args.length > 1) {
             System.out.println("Введен не нужный аргумент. Команда приведена к базовой команде remove_lower.");
         }
