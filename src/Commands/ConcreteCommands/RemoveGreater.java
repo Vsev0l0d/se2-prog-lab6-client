@@ -9,7 +9,8 @@ import java.io.IOException;
  * Конкретная команда удаления объектов, превышающих заданный.
  */
 public class RemoveGreater extends Command {
-    private CommandReceiver commandReceiver;
+    private static final long serialVersionUID = 32L;
+    transient private CommandReceiver commandReceiver;
 
     public RemoveGreater (CommandReceiver commandReceiver) {
         this.commandReceiver = commandReceiver;

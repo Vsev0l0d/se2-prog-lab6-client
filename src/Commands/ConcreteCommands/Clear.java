@@ -9,7 +9,8 @@ import java.io.IOException;
  * Конкретная команда очистки коллекции.
  */
 public class Clear extends Command {
-    private CommandReceiver commandReceiver;
+    private static final long serialVersionUID = 32L;
+    transient private CommandReceiver commandReceiver;
 
     public Clear (CommandReceiver commandReceiver) {
         this.commandReceiver = commandReceiver;

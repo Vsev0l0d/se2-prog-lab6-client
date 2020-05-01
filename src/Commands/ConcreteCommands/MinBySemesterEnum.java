@@ -9,7 +9,8 @@ import java.io.IOException;
  * Конкретная команда подсчета миниммального семестра.
  */
 public class MinBySemesterEnum extends Command {
-    private CommandReceiver commandReceiver;
+    private static final long serialVersionUID = 32L;
+    transient private CommandReceiver commandReceiver;
 
     public MinBySemesterEnum(CommandReceiver commandReceiver) {
         this.commandReceiver = commandReceiver;

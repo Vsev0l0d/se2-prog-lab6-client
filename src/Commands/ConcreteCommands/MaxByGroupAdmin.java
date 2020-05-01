@@ -9,7 +9,8 @@ import java.io.IOException;
  * Конкретная команда подсчета по "максимальному" админу.
  */
 public class MaxByGroupAdmin extends Command {
-    private CommandReceiver commandReceiver;
+    private static final long serialVersionUID = 32L;
+   transient private CommandReceiver commandReceiver;
 
     public MaxByGroupAdmin(CommandReceiver commandReceiver) {
         this.commandReceiver = commandReceiver;

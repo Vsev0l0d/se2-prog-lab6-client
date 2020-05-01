@@ -9,7 +9,8 @@ import java.io.IOException;
  * Конкретная команда удаления объектов, меньше заданного.
  */
 public class RemoveLower extends Command {
-    private CommandReceiver commandReceiver;
+    private static final long serialVersionUID = 32L;
+     transient private CommandReceiver commandReceiver;
 
     public RemoveLower(CommandReceiver commandReceiver) {
         this.commandReceiver = commandReceiver;

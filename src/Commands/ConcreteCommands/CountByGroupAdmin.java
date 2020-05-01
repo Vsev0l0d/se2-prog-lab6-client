@@ -9,7 +9,8 @@ import java.io.IOException;
  * Конкретная команда подсчета по админу.
  */
 public class CountByGroupAdmin extends Command {
-    private CommandReceiver commandReceiver;
+    private static final long serialVersionUID = 32L;
+    transient private CommandReceiver commandReceiver;
 
     public CountByGroupAdmin(CommandReceiver commandReceiver) {
         this.commandReceiver = commandReceiver;

@@ -9,7 +9,8 @@ import java.io.IOException;
  * Конкретная команда вывода первого элемента коллекции.
  */
 public class Head extends Command {
-    private CommandReceiver commandReceiver;
+    private static final long serialVersionUID = 32L;
+    transient private CommandReceiver commandReceiver;
 
     public Head (CommandReceiver commandReceiver) {
         this.commandReceiver = commandReceiver;
