@@ -22,6 +22,7 @@ public class CountryReader {
                 System.out.print("Вы ввели несуществующее значение из представленных. Попробуйте снова: ");
                 toContains = in.nextLine().trim();
                 checkExist(toContains);
+                if (canBeNull && toContains.equals("")) { return null; }
             }
         }
 
