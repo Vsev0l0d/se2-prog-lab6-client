@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class ElementCreator {
     public static StudyGroup createStudyGroup() {
 
-        if (StringReader.read("Если хотите дефолтный обьект введите любой символ, в противном случае сразу нажмите Enter: ", true).length() > 0) return new StudyGroup("qqqq", new Coordinates(1, 1), 1, null , Semester.FIFTH, new Person("sss", 2, Color.RED, Color.RED, Country.USA));
+        if (StringReader.read("Если хотите дефолтный обьект введите любой символ, в противном случае сразу нажмите Enter: ", true) != null) return new StudyGroup("qqqq", new Coordinates(1, 1), 1, null , Semester.FIFTH, new Person("sss", 2, Color.RED, Color.RED, Country.USA));
 
         String name = StringReader.read("Введите имя группы: ", false);
         Integer x = RefIntReader.read("Введите X: ", false, 531, "MAX");
