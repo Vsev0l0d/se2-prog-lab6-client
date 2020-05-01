@@ -77,7 +77,8 @@ public class CommandReceiver {
         Receiver.receive(socketChannel);
     }
 
-    public void exit() {
+    public void exit() throws IOException {
+        socketChannel.close();
         System.out.println("Завершение работы клиента.");
         System.exit(0);
     }
@@ -119,6 +120,51 @@ public class CommandReceiver {
     }
 
     public void executeScript(String path) {
-
+        String line;
+        String command;
+        ArrayList<String> parameters = new ArrayList<>();
+        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new BufferedInputStream(new FileInputStream(path)), StandardCharsets.UTF_8))) {
+            while ((line = bufferedReader.readLine()) != null) {
+                if (line.split(" ")[0].matches("add|update|remove_lower|remove_greater")) {
+                    parameters.clear();
+                    command = line;
+                    for (int i = 0; i < 11; i++) {
+                        if (line != null) {
+                            line = bufferedReader.readLine();
+                            parameters.add(line);
+                        } else { System.out.println("Не хватает параметров для создания объекта."); break; }
+                    }
+                    StudyGroup studyGroup = ElementCreator.createScriptStudyGroup(parameters);
+                    if (studyGroup != null) {
+                        switch (command.split(" ")[0]) {
+                            case "add":
+                                sender.sendObject(new SerializedObjectCommand(new Add(), studyGroup));
+                                Thread.sleep(50);
+                                Receiver.receive(socketChannel);
+                                break;
+                            case "update":
+                                sender.sendObject(new SerializedCombinedCommand(new Update(), ElementCreator.createStudyGroup(), command.split(" ")[1]));
+                                Thread.sleep(50);
+                                Receiver.receive(socketChannel);
+                                break;
+                            case "remove_greater":
+                                sender.sendObject(new SerializedObjectCommand(new RemoveGreater(), studyGroup));
+                                Thread.sleep(50);
+                                Receiver.receive(socketChannel);
+                                break;
+                            case "remove_lower":
+                                sender.sendObject(new SerializedObjectCommand(new RemoveLower(), studyGroup));
+                                Thread.sleep(50);
+                                Receiver.receive(socketChannel);
+                                break;
+                        }
+                    }
+                } else if (line.split(" ")[0].equals("execute_script")
+                        && line.split(" ")[1].equals(ExecuteScript.getPath())) { System.out.println("Пресечена попытка рекурсивного вызова скрипта."); }
+                else { commandInvoker.executeCommand(line.split(" ")); }
+            }
+        } catch (IOException | InterruptedException | ClassNotFoundException e) {
+            System.out.println("Ошибка! " + e.getMessage());
+        }
     }
 }
