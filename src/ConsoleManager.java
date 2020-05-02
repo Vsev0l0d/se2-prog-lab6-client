@@ -19,15 +19,21 @@ class ConsoleManager {
 
         try {
             session = new Session(hostName, Integer.parseInt(port));
-            session.startSession();
+            for (int i = 0; i < 3; i++){
+                try {
+                    session.startSession();
+                    break;
+                } catch (ConnectException ex) {
+                    System.out.println("Не удалось подключиться к удаленному адресу...");
+                    if (i == 2) System.exit(0);
+                    System.out.println("Попробую снова");
+                }
+            }
             delay = Integer.parseInt(delayArg);
             if (delay < 80) delay = 80;  // Минимальная задержка 80
         } catch (NumberFormatException ex) {
             System.out.println("Один из аргументов не соответствует требованием.\n" +
                     "Имя хоста должно быть текстовым значением, а порта и задержки(в мс) - целочисленным!");
-            System.exit(0);
-        } catch (ConnectException ex) {
-            System.out.println("Не удалось подключиться к удаленному адресу...");
             System.exit(0);
         }
 
