@@ -1,6 +1,7 @@
 package Client;
 
 import java.io.IOException;
+import java.net.ConnectException;
 import java.net.InetSocketAddress;
 import java.nio.channels.SocketChannel;
 
@@ -15,11 +16,20 @@ public class Session {
     }
 
     public void startSession() throws IOException {
-        InetSocketAddress inetSocketAddress = new InetSocketAddress(hostName, port);
-        socketChannel = SocketChannel.open(inetSocketAddress);
-        socketChannel.configureBlocking(false);
+        for (int i = 0; true; i++){
+            try {
+                InetSocketAddress inetSocketAddress = new InetSocketAddress(hostName, port);
+                socketChannel = SocketChannel.open(inetSocketAddress);
+                socketChannel.configureBlocking(false);
 
-        System.out.println(String.format("Подключение к удаленному адресу %s по порту %d", hostName, port));
+                System.out.println(String.format("Подключение к удаленному адресу %s по порту %d", hostName, port));
+                break;
+            } catch (ConnectException ex) {
+                System.out.println("Не удалось подключиться к удаленному адресу...");
+                if (i == 2) System.exit(0);
+                System.out.println("Попробую снова");
+            }
+        }
     }
 
     public void closeSession() throws IOException {
