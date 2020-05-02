@@ -1,5 +1,6 @@
 package Commands;
 
+import BasicClasses.Person;
 import BasicClasses.StudyGroup;
 import Client.Receiver;
 import Client.Sender;
@@ -160,6 +161,20 @@ public class CommandReceiver {
                                 Receiver.receive(socketChannel);
                                 break;
                         }
+                    }
+                } else if(line.split(" ")[0].equals("count_by_group_admin")) {
+                    parameters.clear();
+                    for (int i = 0; i < 5; i++) {
+                        if (line != null) {
+                            line = bufferedReader.readLine();
+                            parameters.add(line);
+                        } else { System.out.println("Не хватает параметров для создания объекта."); break; }
+                    }
+                    Person person = ElementCreator.createScriptPerson(parameters);
+                    if (person != null) {
+                        sender.sendObject(new SerializedObjectCommand(new CountByGroupAdmin(), person));
+                        Thread.sleep(delay);
+                        Receiver.receive(socketChannel);
                     }
                 } else if (line.split(" ")[0].equals("execute_script")
                         && line.split(" ")[1].equals(ExecuteScript.getPath())) { System.out.println("Пресечена попытка рекурсивного вызова скрипта."); }

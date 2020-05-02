@@ -39,7 +39,7 @@ public class ElementCreator {
     }
 
     public static StudyGroup createScriptStudyGroup(ArrayList<String> parameters) {
-        if (validateArray(parameters)) {
+        if (validateArrayStudyGroup(parameters)) {
             FormOfEducation formOfEducation = null;
             if (!parameters.get(4).isEmpty()) { formOfEducation = FormOfEducation.valueOf(parameters.get(4)); }
             return new StudyGroup(parameters.get(0),
@@ -53,10 +53,18 @@ public class ElementCreator {
         return null;
     }
 
-    private static boolean validateArray(ArrayList<String> parameters) {
+    public static Person createScriptPerson(ArrayList<String> parameters) {
+        if (validateArrayPerson(parameters)) {
+            return new Person(parameters.get(0), Integer.parseInt(parameters.get(1)), Color.valueOf(parameters.get(2)), Color.valueOf(parameters.get(3)), Country.valueOf(parameters.get(4)));
+        } else { System.out.println("Один из параметров не соответствует требованиям."); }
+
+        return null;
+    }
+
+    private static boolean validateArrayStudyGroup(ArrayList<String> parameters) {
         try {
             return !parameters.get(0).isEmpty()
-                    && Integer.parseInt(parameters.get(1)) < 511
+                    && Integer.parseInt(parameters.get(1)) <= 531
                     && Float.parseFloat(parameters.get(2)) > -653f
                     && Integer.parseInt(parameters.get(3)) > 0
                     && (FormOfEducationReader.checkExist(parameters.get(4)) || parameters.get(4).isEmpty())
@@ -66,6 +74,17 @@ public class ElementCreator {
                     && ColorReader.checkExist(parameters.get(8))
                     && ColorReader.checkExist(parameters.get(9))
                     && CountryReader.checkExist(parameters.get(10));
+
+        } catch (NumberFormatException ex) { return false; }
+    }
+
+    private static boolean validateArrayPerson(ArrayList<String> parameters) {
+        try {
+            return (!parameters.get(0).isEmpty() && parameters.get(0) != null) &&
+                    Integer.parseInt(parameters.get(1)) > 0 &&
+                    ColorReader.checkExist(parameters.get(2)) &&
+                    ColorReader.checkExist(parameters.get(3)) &&
+                    CountryReader.checkExist(parameters.get(4));
 
         } catch (NumberFormatException ex) { return false; }
     }
