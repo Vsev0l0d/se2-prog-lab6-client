@@ -15,7 +15,7 @@ public class Session {
         this.port = port;
     }
 
-    public void startSession() throws IOException {
+    public void startSession() throws IOException, InterruptedException {
         for (int i = 0; true; i++){
             try {
                 InetSocketAddress inetSocketAddress = new InetSocketAddress(hostName, port);
@@ -28,6 +28,7 @@ public class Session {
                 System.out.println("Не удалось подключиться к удаленному адресу...");
                 if (i == 2) System.exit(0);
                 System.out.println("Попробую снова");
+                Thread.sleep(2000);
             }
         }
     }

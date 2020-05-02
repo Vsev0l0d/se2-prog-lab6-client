@@ -26,6 +26,8 @@ class ConsoleManager {
             System.out.println("Один из аргументов не соответствует требованием.\n" +
                     "Имя хоста должно быть текстовым значением, а порта и задержки(в мс) - целочисленным!");
             System.exit(0);
+        } catch (InterruptedException ex){
+            System.out.println(ex.getMessage());
         }
 
         Sender sender = new Sender(session);
