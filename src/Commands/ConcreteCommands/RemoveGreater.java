@@ -23,7 +23,7 @@ public class RemoveGreater extends Command {
         if (args.length > 1) {
             System.out.println("Введен не нужный аргумент. Команда приведена к базовой команде remove_greater.");
         }
-        commandReceiver.remove_greater();
+        commandReceiver.removeGreater();
     }
 
     @Override

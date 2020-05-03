@@ -92,19 +92,19 @@ public class CommandReceiver {
         Receiver.receive(socketChannel);
     }
 
-    public void remove_greater() throws IOException, InterruptedException, ClassNotFoundException {
+    public void removeGreater() throws IOException, InterruptedException, ClassNotFoundException {
         sender.sendObject(new SerializedObjectCommand(new RemoveGreater(), ElementCreator.createStudyGroup()));
         Thread.sleep(delay);
         Receiver.receive(socketChannel);
     }
 
-    public void remove_lower() throws IOException, ClassNotFoundException, InterruptedException {
+    public void removeLower() throws IOException, ClassNotFoundException, InterruptedException {
         sender.sendObject(new SerializedObjectCommand(new RemoveLower(), ElementCreator.createStudyGroup()));
         Thread.sleep(delay);
         Receiver.receive(socketChannel);
     }
 
-    public void min_by_semester_enum() throws IOException, InterruptedException, ClassNotFoundException {
+    public void minBySemesterEnum() throws IOException, InterruptedException, ClassNotFoundException {
         sender.sendObject(new SerializedSimplyCommand(new MinBySemesterEnum()));
         Thread.sleep(delay);
         Receiver.receive(socketChannel);

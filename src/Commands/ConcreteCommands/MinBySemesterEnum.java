@@ -23,7 +23,7 @@ public class MinBySemesterEnum extends Command {
         if (args.length > 1) {
             System.out.println("Введен не нужный аргумент. Команда приведена к базовой команде min_by_semester_enum.");
         }
-        commandReceiver.min_by_semester_enum();
+        commandReceiver.minBySemesterEnum();
     }
 
     @Override
