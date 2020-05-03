@@ -10,13 +10,21 @@ import Commands.Utils.Readers.PrimitiveAndReferenceReaders.PrimitiveIntReader;
 import Commands.Utils.Readers.PrimitiveAndReferenceReaders.RefIntReader;
 import Commands.Utils.Readers.PrimitiveAndReferenceReaders.StringReader;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 import java.util.ArrayList;
+import java.util.Set;
 
 
 /**
  * Классб содержащий методы для создания группы и человека.
  */
 public class ElementCreator {
+    private static final ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+    private static final Validator validator = factory.getValidator();
+
     public static StudyGroup createStudyGroup() {
         String name = StringReader.read("Введите имя группы: ", false);
         Integer x = RefIntReader.read("Введите X: ", false, 531, "MAX");
@@ -63,6 +71,17 @@ public class ElementCreator {
 
     private static boolean validateArrayStudyGroup(ArrayList<String> parameters) {
         try {
+//            FormOfEducation formOfEducation = null;
+//            if (!parameters.get(4).isEmpty()) { formOfEducation = FormOfEducation.valueOf(parameters.get(4)); }
+//            Set<ConstraintViolation<StudyGroup>> violations = validator.validate(new StudyGroup(
+//                    parameters.get(0),
+//                    new Coordinates(Integer.parseInt(parameters.get(1)), Float.parseFloat(parameters.get(2))),
+//                    Integer.parseInt(parameters.get(3)),
+//                    formOfEducation,
+//                    Semester.valueOf(parameters.get(5)),
+//                    new Person(parameters.get(6), Integer.parseInt(parameters.get(7)), Color.valueOf(parameters.get(8)), Color.valueOf(parameters.get(9)), Country.valueOf(parameters.get(10)))
+//            ));
+//            return violations.isEmpty();
             return !parameters.get(0).isEmpty()
                     && Integer.parseInt(parameters.get(1)) <= 531
                     && Float.parseFloat(parameters.get(2)) > -653f
