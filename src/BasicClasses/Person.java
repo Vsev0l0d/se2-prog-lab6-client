@@ -1,17 +1,11 @@
 package BasicClasses;
 
-import javax.validation.constraints.*;
 import java.io.Serializable;
 
 public class Person implements Serializable {
-    @NotNull
-    @Size(min = 1)
     private String name; //Строка не может быть пустой, Поле не может быть null
-    @Min(0)
     private int height; //Значение поля должно быть больше 0
-    @NotNull
     private Color eyeColor; //Поле не может быть null
-    @NotNull
     private Color hairColor; //Поле не может быть null
     private Country nationality; //Поле может быть null
 

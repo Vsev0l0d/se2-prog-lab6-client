@@ -2,29 +2,17 @@ package BasicClasses;
 
 import Utils.IDGenerator;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
-import java.util.Random;
+
 
 public class StudyGroup implements Comparable<StudyGroup>, Serializable {
-    @NotNull
-    @Min(0)
     private Integer id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
-    @NotNull
-    @Size(min = 1)
     private String name; //Поле не может быть null, Строка не может быть пустой
-    @NotNull
     private Coordinates coordinates; //Поле не может быть null
-    @NotNull
     private java.time.ZonedDateTime creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
-    @NotNull
-    @Min(0)
     private Integer studentsCount; //Значение поля должно быть больше 0, Поле не может быть null
     private FormOfEducation formOfEducation; //Поле может быть null
-    @NotNull
     private Semester semesterEnum; //Поле не может быть null
     private Person groupAdmin; //Поле может быть null
 
