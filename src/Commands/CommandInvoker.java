@@ -22,6 +22,10 @@ public class CommandInvoker {
         } catch (NullPointerException ex) {
             System.out.println("Не существует команды " + commandName[0] + ". Для справки используйте – help");
         } catch (IllegalStateException | IOException | ClassNotFoundException | InterruptedException ex) {
+            if (ex.getMessage().equals("Connection reset by peer")) {
+                System.out.println("Там это... Сервер помер, но ты приходи в следующий раз и обязательно сможешь пошалить с коллекцией");
+                System.exit(0);
+            }
             System.out.println(ex.getMessage());
         }
     }
