@@ -15,12 +15,12 @@ public class FormOfEducationReader {
     public static FormOfEducation read(boolean canBeNull) {
         Scanner in = new Scanner(System.in);
         System.out.print("Введите страну из представленных(" + Arrays.asList(FormOfEducation.values()) + "): ");
-        String toContains = in.nextLine().trim();
+        String toContains = in.nextLine().trim().toUpperCase();
 
         if ((!checkExist(toContains)) && !canBeNull && !toContains.equals("") || !canBeNull && toContains.equals("") || canBeNull && !toContains.equals("")) {
             while (!checkExist(toContains)) {
                 System.out.print("Вы ввели несуществующее значение из представленных. Попробуйте снова: ");
-                toContains = in.nextLine().trim();
+                toContains = in.nextLine().trim().toUpperCase();
                 checkExist(toContains);
                 if (canBeNull && toContains.equals("")) { return null; }
             }
