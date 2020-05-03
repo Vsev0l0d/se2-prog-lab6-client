@@ -7,5 +7,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" exported="" name="org.hibernate.validator:hibernate-validator-test-utils:6.1.0.Final" level="project" />
   </component>
 </module>

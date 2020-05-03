@@ -15,7 +15,7 @@ public class CommandInvoker {
 
     public void executeCommand(String[] commandName) {
         try {
-            if (commandName.length > 0) {
+            if (commandName.length > 0 && !commandName[0].equals("")) {
                 Command command = commandMap.get(commandName[0]);
                 command.execute(commandName);
             } else { System.out.println("Вы не ввели команду."); }

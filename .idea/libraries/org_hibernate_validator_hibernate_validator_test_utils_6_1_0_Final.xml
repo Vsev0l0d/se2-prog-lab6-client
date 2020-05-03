@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="org.hibernate.validator:hibernate-validator-test-utils:6.1.0.Final" type="repository">
+    <properties maven-id="org.hibernate.validator:hibernate-validator-test-utils:6.1.0.Final" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/validator/hibernate-validator-test-utils/6.1.0.Final/hibernate-validator-test-utils-6.1.0.Final.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/jakarta/validation/jakarta.validation-api/2.0.2/jakarta.validation-api-2.0.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
