@@ -126,7 +126,7 @@ public class CommandReceiver {
         String line;
         String command;
         ArrayList<String> parameters = new ArrayList<>();
-        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new BufferedInputStream(new FileInputStream(path)), StandardCharsets.UTF_8))) {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path))) {
             while ((line = bufferedReader.readLine()) != null) {
                 if (line.split(" ")[0].matches("add|update|remove_lower|remove_greater")) {
                     parameters.clear();

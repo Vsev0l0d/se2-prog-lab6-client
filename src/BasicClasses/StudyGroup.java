@@ -17,7 +17,7 @@ public class StudyGroup implements Comparable<StudyGroup>, Serializable {
     private Person groupAdmin; //Поле может быть null
 
     public StudyGroup(String name, Coordinates coordinates, Integer studentsCount, FormOfEducation formOfEducation, Semester semesterEnum, Person groupAdmin) {
-        this.id = IDGenerator.generateID();
+        this.id = IDGenerator.getIdGenerator().generateID();
         this.name = name;
         this.coordinates = coordinates;
         this.creationDate = java.time.ZonedDateTime.now();

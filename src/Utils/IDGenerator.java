@@ -7,9 +7,16 @@ import java.util.Random;
  * Класс-генератор ID.
  */
 public class IDGenerator {
-    private static HashSet<Integer> hashSetId = new HashSet<>();
+    private static IDGenerator idGenerator;
 
-    public static Integer generateID() {
+    public static IDGenerator getIdGenerator() {
+        if (idGenerator == null) { idGenerator = new IDGenerator(); }
+        return idGenerator;
+    }
+
+    private HashSet<Integer> hashSetId = new HashSet<>();
+
+    public Integer generateID() {
         Integer id = new Random().nextInt(Integer.MAX_VALUE);
 
         if (hashSetId.contains(id)) {
@@ -22,7 +29,7 @@ public class IDGenerator {
         return id;
     }
 
-    static Integer generateID(Integer ID) {
+    Integer generateID(Integer ID) {
         Integer id = ID;
 
         if (hashSetId.contains(id)) {
