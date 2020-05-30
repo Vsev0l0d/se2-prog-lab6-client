@@ -4,6 +4,7 @@ import Commands.CommandReceiver;
 import Commands.ConcreteCommands.*;
 
 import Client.Session;
+import Commands.Utils.Creaters.ElementCreator;
 
 import java.io.IOException;
 import java.net.ConnectException;
@@ -32,8 +33,9 @@ class ConsoleManager {
 
         Sender sender = new Sender(session);
 
+        ElementCreator elementCreator = new ElementCreator();
         CommandInvoker commandInvoker = new CommandInvoker();
-        CommandReceiver commandReceiver = new CommandReceiver(commandInvoker, sender, session.getSocketChannel(), delay);
+        CommandReceiver commandReceiver = new CommandReceiver(commandInvoker, sender, session.getSocketChannel(), delay, elementCreator);
 
         commandInvoker.register("help", new Help(commandReceiver));
         commandInvoker.register("add", new Add(commandReceiver));

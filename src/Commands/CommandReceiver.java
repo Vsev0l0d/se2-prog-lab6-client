@@ -13,7 +13,6 @@ import Commands.Utils.Creaters.ElementCreator;
 
 import java.io.*;
 import java.nio.channels.SocketChannel;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 /**
@@ -24,12 +23,14 @@ public class CommandReceiver {
     private final Sender sender;
     private final SocketChannel socketChannel;
     private final Integer delay;
+    private final ElementCreator elementCreator;
 
-    public CommandReceiver(CommandInvoker commandInvoker, Sender sender, SocketChannel socketChannel, Integer delay) {
+    public CommandReceiver(CommandInvoker commandInvoker, Sender sender, SocketChannel socketChannel, Integer delay, ElementCreator elementCreator) {
         this.commandInvoker = commandInvoker;
         this.sender = sender;
         this.socketChannel = socketChannel;
         this.delay = delay;
+        this.elementCreator = elementCreator;
     }
 
     public void help() {
@@ -49,7 +50,7 @@ public class CommandReceiver {
     }
 
     public void add() throws IOException, InterruptedException, ClassNotFoundException {
-        sender.sendObject(new SerializedObjectCommand(new Add(), ElementCreator.createStudyGroup()));
+        sender.sendObject(new SerializedObjectCommand(new Add(), elementCreator.createStudyGroup()));
         Thread.sleep(delay);
         Receiver.receive(socketChannel);
     }
@@ -59,7 +60,7 @@ public class CommandReceiver {
      * @param ID - апдейт элемента по ID.
      */
     public void update(String ID) throws IOException, InterruptedException, ClassNotFoundException {
-        sender.sendObject(new SerializedCombinedCommand(new Update(), ElementCreator.createStudyGroup(), ID));
+        sender.sendObject(new SerializedCombinedCommand(new Update(), elementCreator.createStudyGroup(), ID));
         Thread.sleep(delay);
         Receiver.receive(socketChannel);
     }
@@ -93,13 +94,13 @@ public class CommandReceiver {
     }
 
     public void removeGreater() throws IOException, InterruptedException, ClassNotFoundException {
-        sender.sendObject(new SerializedObjectCommand(new RemoveGreater(), ElementCreator.createStudyGroup()));
+        sender.sendObject(new SerializedObjectCommand(new RemoveGreater(), elementCreator.createStudyGroup()));
         Thread.sleep(delay);
         Receiver.receive(socketChannel);
     }
 
     public void removeLower() throws IOException, ClassNotFoundException, InterruptedException {
-        sender.sendObject(new SerializedObjectCommand(new RemoveLower(), ElementCreator.createStudyGroup()));
+        sender.sendObject(new SerializedObjectCommand(new RemoveLower(), elementCreator.createStudyGroup()));
         Thread.sleep(delay);
         Receiver.receive(socketChannel);
     }
@@ -117,7 +118,7 @@ public class CommandReceiver {
     }
 
     public void countByGroupAdmin() throws IOException, InterruptedException, ClassNotFoundException {
-        sender.sendObject(new SerializedObjectCommand(new CountByGroupAdmin(), ElementCreator.createPerson()));
+        sender.sendObject(new SerializedObjectCommand(new CountByGroupAdmin(), elementCreator.createPerson()));
         Thread.sleep(delay);
         Receiver.receive(socketChannel);
     }
@@ -137,7 +138,7 @@ public class CommandReceiver {
                             parameters.add(line);
                         } else { System.out.println("Не хватает параметров для создания объекта."); break; }
                     }
-                    StudyGroup studyGroup = ElementCreator.createScriptStudyGroup(parameters);
+                    StudyGroup studyGroup = elementCreator.createScriptStudyGroup(parameters);
                     if (studyGroup != null) {
                         switch (command.split(" ")[0]) {
                             case "add":
@@ -146,7 +147,7 @@ public class CommandReceiver {
                                 Receiver.receive(socketChannel);
                                 break;
                             case "update":
-                                sender.sendObject(new SerializedCombinedCommand(new Update(), ElementCreator.createStudyGroup(), command.split(" ")[1]));
+                                sender.sendObject(new SerializedCombinedCommand(new Update(), elementCreator.createStudyGroup(), command.split(" ")[1]));
                                 Thread.sleep(delay);
                                 Receiver.receive(socketChannel);
                                 break;
@@ -170,7 +171,7 @@ public class CommandReceiver {
                             parameters.add(line);
                         } else { System.out.println("Не хватает параметров для создания объекта."); break; }
                     }
-                    Person person = ElementCreator.createScriptPerson(parameters);
+                    Person person = elementCreator.createScriptPerson(parameters);
                     if (person != null) {
                         sender.sendObject(new SerializedObjectCommand(new CountByGroupAdmin(), person));
                         Thread.sleep(delay);

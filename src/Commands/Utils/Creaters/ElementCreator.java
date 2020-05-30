@@ -18,7 +18,7 @@ import java.util.ArrayList;
  */
 public class ElementCreator {
 
-    public static StudyGroup createStudyGroup() {
+    public StudyGroup createStudyGroup() {
         String name = StringReader.read("Введите имя группы: ", false);
         Integer x = RefIntReader.read("Введите X: ", false, 531, "MAX");
         float y = PrimitiveFloatReader.read("Введите Y: ", -653f, "MIN");
@@ -29,7 +29,7 @@ public class ElementCreator {
         return new StudyGroup(name, new Coordinates(x, y), studentsCount, formOfEducation, semester, createPerson());
     }
 
-    public static Person createPerson() {
+    public Person createPerson() {
         String groupAdminName = StringReader.read("Введите имя админа группы: ", false);
         int height = PrimitiveIntReader.read("Введите рост админа группы: ", 0, "MIN");
         Color eyeColor = ColorReader.read("Введите цвет глаз Админа группы.", false);
@@ -39,7 +39,7 @@ public class ElementCreator {
         return new Person(groupAdminName, height, eyeColor, hairColor, nationality);
     }
 
-    public static StudyGroup createScriptStudyGroup(ArrayList<String> parameters) {
+    public StudyGroup createScriptStudyGroup(ArrayList<String> parameters) {
         if (validateArrayStudyGroup(parameters)) {
             FormOfEducation formOfEducation = null;
             if (!parameters.get(4).isEmpty()) { formOfEducation = FormOfEducation.valueOf(parameters.get(4)); }
@@ -54,7 +54,7 @@ public class ElementCreator {
         return null;
     }
 
-    public static Person createScriptPerson(ArrayList<String> parameters) {
+    public Person createScriptPerson(ArrayList<String> parameters) {
         if (validateArrayPerson(parameters)) {
             return new Person(parameters.get(0), Integer.parseInt(parameters.get(1)), Color.valueOf(parameters.get(2)), Color.valueOf(parameters.get(3)), Country.valueOf(parameters.get(4)));
         } else { System.out.println("Один из параметров не соответствует требованиям."); }
@@ -62,7 +62,7 @@ public class ElementCreator {
         return null;
     }
 
-    private static boolean validateArrayStudyGroup(ArrayList<String> parameters) {
+    private boolean validateArrayStudyGroup(ArrayList<String> parameters) {
         try {
             return !parameters.get(0).isEmpty()
                     && Integer.parseInt(parameters.get(1)) <= 531
@@ -79,7 +79,7 @@ public class ElementCreator {
         } catch (NumberFormatException ex) { return false; }
     }
 
-    private static boolean validateArrayPerson(ArrayList<String> parameters) {
+    private boolean validateArrayPerson(ArrayList<String> parameters) {
         try {
             return (!parameters.get(0).isEmpty() && parameters.get(0) != null) &&
                     Integer.parseInt(parameters.get(1)) > 0 &&
